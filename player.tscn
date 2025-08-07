@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://daml7pc384wme"]
+
+[node name="Player" type="Area2D"]
+position = Vector2(-1027, -207)
+metadata/_edit_group_ = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D"]
+polygon = PackedVector2Array(1596, 694, 1401, 329, 1764, 335)
