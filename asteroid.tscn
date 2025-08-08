@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cmen3tbqq15ux"]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-3, 4)
+scale = Vector2(1, 1.2)
+polygon = PackedVector2Array(-5, -5, -4, -11, 8, -10, 12, -3, 7, 4, -1, 4, -2, 0, -7, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-0.368751, 0.0999994)
+scale = Vector2(0.96875, 1.00781)
+polygon = PackedVector2Array(-7, -8, 6, -7, 9, 0, 3, 8)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
