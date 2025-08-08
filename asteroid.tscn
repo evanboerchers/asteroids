@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://cmen3tbqq15ux"]
+[gd_scene load_steps=2 format=3 uid="uid://cmen3tbqq15ux"]
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[ext_resource type="Script" uid="uid://dg33wbfldjbmy" path="res://asteroid.gd" id="1_u87q6"]
+
+[node name="Asteroid" type="RigidBody2D"]
+script = ExtResource("1_u87q6")
 metadata/_edit_group_ = true
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
@@ -14,3 +17,5 @@ scale = Vector2(0.96875, 1.00781)
 polygon = PackedVector2Array(-7, -8, 6, -7, 9, 0, 3, 8)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
