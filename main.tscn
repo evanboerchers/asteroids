@@ -17,11 +17,20 @@ asteroid_scene = ExtResource("2_1bvp3")
 [node name="Player" parent="." instance=ExtResource("3_lquwl")]
 position = Vector2(576, 320)
 
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [node name="AsteroidTimer" type="Timer" parent="."]
 
 [node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(500, 240.025)
 
 [node name="AsteroidPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_7mycd")
 
 [node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
+position = Vector2(576, 283)
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]

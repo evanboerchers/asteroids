@@ -5,6 +5,11 @@ signal hit
 @export var speed = 400
 var screen_size
 
+func start(pos):
+	position = pos
+	show()
+	$CollisionPolygon2D.disabled = false
+
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 
@@ -27,7 +32,6 @@ func _process(delta):
 
 
 func _on_body_entered(_body):
-	hide() # Player disappears after being hit.
+	hide()
 	hit.emit()
-	# Must be deferred as we can't change physics properties on a physics callback.
 	$CollisionPolygon2D.set_deferred("disabled", true)
