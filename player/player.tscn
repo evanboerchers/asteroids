@@ -1,10 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://daml7pc384wme"]
+[gd_scene load_steps=3 format=3 uid="uid://daml7pc384wme"]
 
-[ext_resource type="Script" uid="uid://c1jkatryuxbqw" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://c1jkatryuxbqw" path="res://player/player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://c2uybbwojr6ef" path="res://projectile/projectile.tscn" id="2_rkbax"]
 
 [node name="Player" type="RigidBody2D"]
-position = Vector2(576, 320)
 script = ExtResource("1_4flbx")
+Projectile = ExtResource("2_rkbax")
 turn_torque = 20000.0
 metadata/_edit_group_ = true
 
@@ -26,5 +27,8 @@ points = PackedVector2Array(40, 32, 0, 24, -40, 32)
 [node name="Line2D" type="Line2D" parent="Thrust"]
 points = PackedVector2Array(-16, 32, 0, 64, 16, 32)
 default_color = Color(0.945098, 0.282353, 0.105882, 1)
+
+[node name="Cannon" type="Marker2D" parent="."]
+position = Vector2(0, -40)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

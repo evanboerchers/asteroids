@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 signal hit
+@export var Projectile: PackedScene
 
 @export var thrust      := 1200.0
 @export var turn_torque := 9000.0 
@@ -18,6 +19,15 @@ func start(pos: Vector2) -> void:
 func invulnerable() -> void:
 	$Hitbox.disabled = true
 
+func shoot():
+	var p = Projectile.instantiate()
+	if(owner):
+		owner.add_child(p)
+		p.transform = $Cannon.global_transform
+		p.rotate(-PI/2)
+	else:
+		add_child(p)
+
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	linear_damp = lin_damp
@@ -28,6 +38,8 @@ func _physics_process(delta: float) -> void:
 	_apply_rotation()
 	_apply_thrust()
 	_wrap_to_screen()
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 
 func _apply_rotation():
 	var rot_dir := 0.0
