@@ -2,14 +2,29 @@
 
 [ext_resource type="Script" uid="uid://c1jkatryuxbqw" path="res://player.gd" id="1_4flbx"]
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="RigidBody2D"]
+position = Vector2(576, 320)
 script = ExtResource("1_4flbx")
+turn_torque = 20000.0
 metadata/_edit_group_ = true
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(0, 0, -50, -100, 50, -100)
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 1)
+polygon = PackedVector2Array(0, -32, -48, 47, 48, 47)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(0, 0, -50, -100, 50, -100)
+[node name="Ship" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="Ship"]
+position = Vector2(-10, -28)
+points = PackedVector2Array(58, 76, 10, -4, -38, 76)
+
+[node name="Line2D2" type="Line2D" parent="Ship"]
+points = PackedVector2Array(40, 32, 0, 24, -40, 32)
+
+[node name="Thrust" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="Thrust"]
+points = PackedVector2Array(-16, 32, 0, 64, 16, 32)
+default_color = Color(0.945098, 0.282353, 0.105882, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
