@@ -9,10 +9,12 @@ func _ready():
 
 func game_over() -> void:
 	$AsteroidTimer.stop()
-
+	$HUD.show_game_over()
+	
 func new_game() -> void:
 	score = 0
 	lives = 3
+	$HUD.update_score(score)
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	

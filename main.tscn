@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2kr8gxbmvwch"]
+[gd_scene load_steps=6 format=3 uid="uid://c2kr8gxbmvwch"]
 
 [ext_resource type="Script" uid="uid://10moy6w467at" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cmen3tbqq15ux" path="res://asteroid.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://daml7pc384wme" path="res://player.tscn" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bspk0udhd1ekc" path="res://hud.tscn" id="4_1bvp3"]
 
 [sub_resource type="Curve2D" id="Curve2D_7mycd"]
 _data = {
@@ -31,5 +32,8 @@ curve = SubResource("Curve2D_7mycd")
 
 [node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
 
+[node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
+
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
