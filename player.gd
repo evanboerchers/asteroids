@@ -21,7 +21,12 @@ func _ready() -> void:
 	angular_damp = ang_damp
 	$Thrust.visible = false
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	_apply_rotation()
+	_apply_thrust(delta)
+	_wrap_to_screen()
+
+func _apply_rotation():
 	var rot_dir := 0.0
 	if Input.is_action_pressed("move_right"):
 		rot_dir += 1.0
@@ -29,18 +34,16 @@ func _physics_process(_delta: float) -> void:
 		rot_dir -= 1.0
 	apply_torque( rot_dir * turn_torque) 
 
+func _apply_thrust(delta):
 	if Input.is_action_pressed("move_up"):
 		var forward := Vector2.UP.rotated(rotation)
 		apply_force(forward * thrust) 
 		$Thrust.visible = true
 	else:
 		$Thrust.visible = false
-
 	var speed := linear_velocity.length()
 	if speed > max_speed:
 		linear_velocity = linear_velocity.normalized() * max_speed
-
-	_wrap_to_screen()
 
 func _wrap_to_screen() -> void:
 	position.x = wrapf(position.x, 0, screen_size.x)
