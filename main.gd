@@ -2,6 +2,7 @@ extends Node
 
 @export var asteroid_scene: PackedScene
 var score
+var lives
 
 func _ready():
 	new_game()
@@ -11,6 +12,7 @@ func game_over() -> void:
 
 func new_game() -> void:
 	score = 0
+	lives = 3
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	

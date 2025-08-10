@@ -14,6 +14,9 @@ func start(pos: Vector2) -> void:
 	position = pos
 	show()
 	$Hitbox.disabled = false
+	
+func invulnerable() -> void:
+	$Hitbox.disabled = true
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -23,7 +26,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_apply_rotation()
-	_apply_thrust(delta)
+	_apply_thrust()
 	_wrap_to_screen()
 
 func _apply_rotation():
@@ -34,7 +37,7 @@ func _apply_rotation():
 		rot_dir -= 1.0
 	apply_torque( rot_dir * turn_torque) 
 
-func _apply_thrust(delta):
+func _apply_thrust():
 	if Input.is_action_pressed("move_up"):
 		var forward := Vector2.UP.rotated(rotation)
 		apply_force(forward * thrust) 
