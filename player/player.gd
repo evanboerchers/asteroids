@@ -3,21 +3,41 @@ extends RigidBody2D
 signal hit
 @export var Projectile: PackedScene
 
-@export var thrust      := 1200.0
-@export var turn_torque := 9000.0 
+@export var thrust      := 9000.0
+@export var turn_torque := 4000.0 
 @export var max_speed   := 900.0  
 @export var lin_damp    := 2.0    
 @export var ang_damp    := 2      
+@export var invul_dur   := 2
 
 var screen_size: Vector2
+var isInvulnerable = false;
 
 func start(pos: Vector2) -> void:
 	position = pos
 	show()
 	$Hitbox.disabled = false
 	
+func respawn(pos: Vector2) -> void:
+	position = pos
+	show()
+	invulnerable()
+
 func invulnerable() -> void:
+	isInvulnerable = true
 	$Hitbox.disabled = true
+	call_deferred('flash')
+	await get_tree().create_timer(invul_dur).timeout
+	$Hitbox.disabled = false
+	isInvulnerable = false
+	visible = true
+	
+func flash() -> void:
+	while isInvulnerable:
+		visible = !visible
+		await get_tree().create_timer(0.15).timeout
+	visible = true
+
 
 func shoot():
 	var p = Projectile.instantiate()
@@ -29,10 +49,13 @@ func shoot():
 		add_child(p)
 
 func _ready() -> void:
+	_set_properties()   
+	$Thrust.visible = false
+
+func _set_properties() -> void:
 	screen_size = get_viewport_rect().size
 	linear_damp = lin_damp
 	angular_damp = ang_damp
-	$Thrust.visible = false
 
 func _physics_process(delta: float) -> void:
 	_apply_rotation()

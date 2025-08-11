@@ -4,15 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://c2uybbwojr6ef" path="res://projectile/projectile.tscn" id="2_rkbax"]
 
 [node name="Player" type="RigidBody2D"]
+center_of_mass_mode = 1
+inertia = 100.0
 script = ExtResource("1_4flbx")
 Projectile = ExtResource("2_rkbax")
-turn_torque = 20000.0
 metadata/_edit_group_ = true
-
-[node name="Hitbox" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 1)
-scale = Vector2(0.5, 0.5)
-polygon = PackedVector2Array(0, -32, -48, 47, 48, 47)
 
 [node name="Ship" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -33,5 +29,11 @@ default_color = Color(0.945098, 0.282353, 0.105882, 1)
 
 [node name="Cannon" type="Marker2D" parent="."]
 position = Vector2(0, -20)
+
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+physics_interpolation_mode = 2
+position = Vector2(0, 1)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(0, -32, -48, 47, 48, 47)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
