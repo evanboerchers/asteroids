@@ -4,6 +4,10 @@ signal start_game
 
 func show_message():
 	$Message.show()
+	
+func show_game_start():
+	$Message.hide()
+	$StartButton.hide()
 
 func show_game_over():
 	show_message();

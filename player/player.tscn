@@ -11,9 +11,11 @@ metadata/_edit_group_ = true
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 1)
+scale = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(0, -32, -48, 47, 48, 47)
 
 [node name="Ship" type="Node2D" parent="."]
+scale = Vector2(0.5, 0.5)
 
 [node name="Line2D" type="Line2D" parent="Ship"]
 position = Vector2(-10, -28)
@@ -23,12 +25,13 @@ points = PackedVector2Array(58, 76, 10, -4, -38, 76)
 points = PackedVector2Array(40, 32, 0, 24, -40, 32)
 
 [node name="Thrust" type="Node2D" parent="."]
+scale = Vector2(0.5, 0.5)
 
 [node name="Line2D" type="Line2D" parent="Thrust"]
 points = PackedVector2Array(-16, 32, 0, 64, 16, 32)
 default_color = Color(0.945098, 0.282353, 0.105882, 1)
 
 [node name="Cannon" type="Marker2D" parent="."]
-position = Vector2(0, -40)
+position = Vector2(0, -20)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

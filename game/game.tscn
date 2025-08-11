@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://c2kr8gxbmvwch"]
 
-[ext_resource type="Script" uid="uid://10moy6w467at" path="res://main.gd" id="1_h2yge"]
-[ext_resource type="PackedScene" uid="uid://cmen3tbqq15ux" path="res://asteroid/asteroid.tscn" id="2_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://daml7pc384wme" path="res://player/player.tscn" id="3_lquwl"]
-[ext_resource type="PackedScene" uid="uid://bspk0udhd1ekc" path="res://hud/hud.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://10moy6w467at" path="res://game/game.gd" id="1_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://cmen3tbqq15ux" path="res://asteroid/asteroid.tscn" id="2_7jktm"]
+[ext_resource type="PackedScene" uid="uid://daml7pc384wme" path="res://player/player.tscn" id="3_ryrav"]
+[ext_resource type="PackedScene" uid="uid://bspk0udhd1ekc" path="res://hud/hud.tscn" id="4_eow3j"]
 
 [sub_resource type="Curve2D" id="Curve2D_7mycd"]
 _data = {
@@ -12,11 +12,10 @@ _data = {
 point_count = 5
 
 [node name="Main" type="Node"]
-script = ExtResource("1_h2yge")
-asteroid_scene = ExtResource("2_1bvp3")
+script = ExtResource("1_fc0e3")
+asteroid_scene = ExtResource("2_7jktm")
 
-[node name="Player" parent="." instance=ExtResource("3_lquwl")]
-visible = false
+[node name="Player" parent="." instance=ExtResource("3_ryrav")]
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -25,14 +24,14 @@ one_shot = true
 [node name="AsteroidTimer" type="Timer" parent="."]
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(500, 240.025)
+position = Vector2(576, 328)
 
 [node name="AsteroidPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_7mycd")
 
 [node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
 
-[node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
+[node name="HUD" parent="." instance=ExtResource("4_eow3j")]
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]

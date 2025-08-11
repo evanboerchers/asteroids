@@ -1,6 +1,6 @@
 extends Polygon2D
 
-@export var radius: float = 8
+@export var radius: float = 4
 @export var sides: int = 32
 
 func _ready():
