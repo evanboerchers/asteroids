@@ -1,25 +1,62 @@
-[gd_scene load_steps=2 format=3 uid="uid://b81nftencc2hl"]
+[gd_scene load_steps=4 format=3 uid="uid://b81nftencc2hl"]
 
 [ext_resource type="Script" uid="uid://d3hg2ql1820qx" path="res://menu/menu.gd" id="1_j0t7f"]
+[ext_resource type="FontFile" uid="uid://p6g0hikpdbpf" path="res://fonts/PressStart2P-Regular.ttf" id="2_g18jx"]
+
+[sub_resource type="Theme" id="Theme_6nwqt"]
+default_font = ExtResource("2_g18jx")
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_j0t7f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 517.0
-offset_top = 228.0
-offset_right = 590.0
-offset_bottom = 251.0
-text = "Asteroids"
+[node name="Panel" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 511.0
-offset_top = 270.0
-offset_right = 601.0
-offset_bottom = 301.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = 78.0
+offset_right = 124.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_6nwqt")
+theme_override_font_sizes/font_size = 32
+button_mask = 0
 text = "Play Game
 "
+flat = true
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -198.0
+offset_right = 450.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 100
+text = "Asteroids"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="play_game"]
