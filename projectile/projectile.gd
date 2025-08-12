@@ -2,6 +2,9 @@ extends Area2D
 
 @export var speed = 600
 
+func _ready() -> void:
+	add_to_group('projectile')
+
 func _physics_process(delta: float) -> void:
 	position += transform.x * speed * delta
 
