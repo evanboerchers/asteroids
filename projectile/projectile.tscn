@@ -7,6 +7,7 @@
 radius = 4.0
 
 [node name="Projectile" type="Area2D"]
+scale = Vector2(0.999302, 0.971346)
 collision_mask = 3
 script = ExtResource("1_makwg")
 
@@ -23,4 +24,5 @@ script = ExtResource("1_6aa83")
 position = Vector2(4.76837e-07, 4.76837e-07)
 scale = Vector2(0.2, 0.2)
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

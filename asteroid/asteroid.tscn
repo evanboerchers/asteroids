@@ -20,4 +20,5 @@ polygon = PackedVector2Array(-5, -5, -4, -11, 8, -10, 12, -3, 7, 4, -1, 4, -2, 0
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-50, -50, 100, 100)
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
