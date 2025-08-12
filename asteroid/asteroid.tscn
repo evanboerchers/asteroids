@@ -7,15 +7,16 @@ script = ExtResource("1_u87q6")
 metadata/_edit_group_ = true
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(-3, 4)
-scale = Vector2(1, 1.2)
+position = Vector2(-13.1579, 23.3333)
+scale = Vector2(5.26316, 6.66667)
 polygon = PackedVector2Array(-5, -5, -4, -11, 8, -10, 12, -3, 7, 4, -1, 4, -2, 0, -7, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-0.368751, 0.0999994)
-scale = Vector2(0.96875, 1.00781)
-polygon = PackedVector2Array(-7, -8, 6, -7, 9, 0, 3, 8)
+position = Vector2(-13.1579, 23.3333)
+scale = Vector2(5.26316, 6.66667)
+polygon = PackedVector2Array(-5, -5, -4, -11, 8, -10, 12, -3, 7, 4, -1, 4, -2, 0, -7, 0)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-50, -50, 100, 100)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
