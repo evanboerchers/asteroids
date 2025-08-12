@@ -4,10 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://c2uybbwojr6ef" path="res://projectile/projectile.tscn" id="2_rkbax"]
 
 [node name="Player" type="RigidBody2D"]
+collision_mask = 2
 center_of_mass_mode = 1
 inertia = 100.0
 script = ExtResource("1_4flbx")
 Projectile = ExtResource("2_rkbax")
+thrust = 4000.0
+ang_damp = 3
 metadata/_edit_group_ = true
 
 [node name="Ship" type="Node2D" parent="."]

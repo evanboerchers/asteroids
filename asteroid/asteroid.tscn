@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dg33wbfldjbmy" path="res://asteroid/asteroid.gd" id="1_u87q6"]
 
 [node name="Asteroid" type="RigidBody2D"]
+collision_layer = 2
 script = ExtResource("1_u87q6")
 metadata/_edit_group_ = true
 

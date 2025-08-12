@@ -7,6 +7,7 @@
 radius = 4.0
 
 [node name="Projectile" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_makwg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -17,3 +18,9 @@ shape = SubResource("CircleShape2D_qxf0c")
 scale = Vector2(0.5, 0.5)
 color = Color(1, 0.489894, 0.98765, 1)
 script = ExtResource("1_6aa83")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(0.2, 0.2)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
