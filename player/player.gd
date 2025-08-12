@@ -88,6 +88,4 @@ func _wrap_to_screen() -> void:
 	position.y = wrapf(position.y, 0, screen_size.y)
 
 func _on_body_entered(_body: Node) -> void:
-	hide()
 	hit.emit()
-	$Hitbox.set_deferred("disabled", true)

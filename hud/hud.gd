@@ -1,21 +1,18 @@
 extends CanvasLayer
-
-func show_message():
-	$Message.show()
 	
 func show_game_start():
 	$Message.hide()
-	$StartButton.hide()
+	$Buttons.hide()
 
 func show_game_over():
-	show_message();
-	$StartButton.show()
+	$Message.show()
+	$Buttons.hide()
 	
 func update_score(score):
-	$Score.text = "Score: %s" % str(score)
+	$Info/Score.text = "Score: %d" % score
 
 func update_lives(lives):
-	$Lives.text = "Score: %s" % str(lives)
+	$Info/Lives.text = "Lives: %d" % lives
 
 func main_menu():
 	get_tree().change_scene_to_file('"res://menu/menu.tscn"')

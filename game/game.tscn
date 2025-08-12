@@ -33,6 +33,16 @@ curve = SubResource("Curve2D_7mycd")
 
 [node name="HUD" parent="." instance=ExtResource("4_eow3j")]
 
+[node name="Background" type="ColorRect" parent="."]
+z_index = -1
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
-[connection signal="start_game" from="HUD" to="." method="new_game"]
