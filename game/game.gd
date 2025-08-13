@@ -9,7 +9,7 @@ func _ready():
 
 func game_over() -> void:
 	$AsteroidTimer.stop()
-	$HUD.show_game_over()
+	$HUD.show_game_over(score)
 	
 func new_game() -> void:
 	score = 0
@@ -42,4 +42,5 @@ func _on_player_hit() -> void:
 		$HUD.update_lives(lives)
 		$Player.respawn($StartPosition.position)
 	else: 
+		$HUD.update_lives(lives)
 		game_over()

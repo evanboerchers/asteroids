@@ -70,7 +70,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	var w := screen_size.x
 	var h := screen_size.y
 	var moved := false
-	
+
 	if p.x < 0:          p.x += w; moved = true
 	elif p.x > w:        p.x -= w; moved = true
 	if p.y < 0:          p.y += h; moved = true
@@ -99,4 +99,5 @@ func _apply_thrust():
 		linear_velocity = linear_velocity.normalized() * max_speed
 
 func _on_body_entered(_body: Node) -> void:
+	$Hitbox.disabled = true
 	hit.emit()
