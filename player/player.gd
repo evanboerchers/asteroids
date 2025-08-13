@@ -46,9 +46,11 @@ func shoot():
 		p.transform = $Cannon.global_transform
 		p.rotate(-PI/2)
 	else:
-		add_child(p)
+		add_child(p)	
 
 func _ready() -> void:
+	contact_monitor=true
+	max_contacts_reported=4
 	_set_properties()   
 	$Thrust.visible = false
 
@@ -60,9 +62,22 @@ func _set_properties() -> void:
 func _physics_process(delta: float) -> void:
 	_apply_rotation()
 	_apply_thrust()
-	_wrap_to_screen()
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
+
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	var p := state.transform.origin
+	var w := screen_size.x
+	var h := screen_size.y
+	var moved := false
+	
+	if p.x < 0:          p.x += w; moved = true
+	elif p.x > w:        p.x -= w; moved = true
+	if p.y < 0:          p.y += h; moved = true
+	elif p.y > h:        p.y -= h; moved = true
+
+	if moved:
+		state.transform.origin = p  
 
 func _apply_rotation():
 	var rot_dir := 0.0
@@ -82,10 +97,6 @@ func _apply_thrust():
 	var speed := linear_velocity.length()
 	if speed > max_speed:
 		linear_velocity = linear_velocity.normalized() * max_speed
-
-func _wrap_to_screen() -> void:
-	position.x = wrapf(position.x, 0, screen_size.x)
-	position.y = wrapf(position.y, 0, screen_size.y)
 
 func _on_body_entered(_body: Node) -> void:
 	hit.emit()
