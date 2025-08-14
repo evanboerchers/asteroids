@@ -1,21 +1,20 @@
 extends Node
 
 @export var asteroid_scene: PackedScene
-var score
-var lives
 
 func _ready():
 	new_game()
 
 func game_over() -> void:
 	$AsteroidTimer.stop()
-	$HUD.show_game_over(score)
+	$HUD.show_game_over()
+	await get_tree().create_timer(0.5).timeout
+	AudioManager.play('GameOver')
 	
 func new_game() -> void:
-	score = 0
-	lives = 3
-	$HUD.update_score(score)
-	$HUD.update_lives(lives)
+	Global.score = 0
+	Global.lives = 3
+	AudioManager.play('GameStart')
 	$HUD.show_game_start()
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
@@ -37,10 +36,9 @@ func _on_asteroid_timer_timeout():
 
 
 func _on_player_hit() -> void:
-	if lives > 1:
-		lives -= 1
-		$HUD.update_lives(lives)
-		$Player.respawn($StartPosition.position)
+	if Global.lives > 1:
+		$Player.respawn()
+		Global.lives -= 1
 	else: 
-		$HUD.update_lives(lives)
+		$Player.explode()
 		game_over()

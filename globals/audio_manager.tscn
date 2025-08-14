@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=3 uid="uid://cn8wh3a84bgs8"]
+
+[ext_resource type="Script" uid="uid://d3ayp0km54yts" path="res://globals/audio_manager.gd" id="1_hilj8"]
+[ext_resource type="AudioStream" uid="uid://q6wa0y5kpaxy" path="res://audio/rock-destroy.mp3" id="2_3uslp"]
+[ext_resource type="AudioStream" uid="uid://dmmshs3srotgt" path="res://audio/explosion.mp3" id="3_8ak76"]
+[ext_resource type="AudioStream" uid="uid://b3bw1j0dxjc6u" path="res://audio/laser-shot.mp3" id="4_nvroi"]
+[ext_resource type="AudioStream" uid="uid://cxoonasanf7og" path="res://audio/impact.mp3" id="5_ay5dq"]
+[ext_resource type="AudioStream" uid="uid://cakgorc6jwllb" path="res://audio/game-over.mp3" id="6_ifagb"]
+[ext_resource type="AudioStream" uid="uid://cnhekgnrehou6" path="res://audio/rocket-engine.mp3" id="6_nvroi"]
+[ext_resource type="AudioStream" uid="uid://dfbxyw6bp5dyk" path="res://audio/space-launch.mp3" id="8_ay5dq"]
+
+[node name="AudioManager" type="Node2D"]
+script = ExtResource("1_hilj8")
+
+[node name="RockBreak" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_3uslp")
+
+[node name="ShipExplode" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_8ak76")
+
+[node name="ShipLaser" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_nvroi")
+
+[node name="ShipImpact" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ay5dq")
+volume_db = 10.0
+
+[node name="ShipEngine" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_nvroi")
+volume_db = 3.0
+
+[node name="GameOver" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ifagb")
+
+[node name="GameStart" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ay5dq")
+volume_db = 10.0

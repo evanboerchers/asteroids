@@ -14,21 +14,25 @@ var screen_size: Vector2
 var isInvulnerable = false;
 
 func start(pos: Vector2) -> void:
-	position = pos
+	transform.origin = pos
 	show()
 	$Hitbox.disabled = false
 	
-func respawn(pos: Vector2) -> void:
-	position = pos
+func respawn() -> void:
 	show()
 	invulnerable()
 
+func explode() -> void:
+	AudioManager.play('ShipExplode')
+	hide()
+	$Hitbox.set_deferred('disabled', true)
+
 func invulnerable() -> void:
 	isInvulnerable = true
-	$Hitbox.disabled = true
+	$Hitbox.set_deferred('disabled', true)
 	call_deferred('flash')
 	await get_tree().create_timer(invul_dur).timeout
-	$Hitbox.disabled = false
+	$Hitbox.set_deferred('disabled', false)
 	isInvulnerable = false
 	visible = true
 	
@@ -50,7 +54,7 @@ func shoot():
 
 func _ready() -> void:
 	contact_monitor=true
-	max_contacts_reported=4
+	max_contacts_reported=1
 	_set_properties()   
 	$Thrust.visible = false
 
@@ -59,7 +63,7 @@ func _set_properties() -> void:
 	linear_damp = lin_damp
 	angular_damp = ang_damp
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_apply_rotation()
 	_apply_thrust()
 	if Input.is_action_just_pressed("shoot"):
@@ -92,12 +96,15 @@ func _apply_thrust():
 		var forward := Vector2.UP.rotated(rotation)
 		apply_force(forward * thrust) 
 		$Thrust.visible = true
+		AudioManager.play('ShipEngine', false)
 	else:
 		$Thrust.visible = false
+		AudioManager.stop('ShipEngine')
 	var speed := linear_velocity.length()
 	if speed > max_speed:
 		linear_velocity = linear_velocity.normalized() * max_speed
 
 func _on_body_entered(_body: Node) -> void:
-	$Hitbox.disabled = true
-	hit.emit()
+	if !isInvulnerable:
+		AudioManager.play('ShipImpact')
+		hit.emit()

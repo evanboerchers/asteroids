@@ -6,22 +6,19 @@ func show_game_start():
 	$Buttons.hide()
 	$Info.show()
 
-
-func show_game_over(score):
-	$FinalScore.text = "Score: %d" % score
+func show_game_over():
 	$Info.hide()
 	$Buttons.show()
 	$GameOver.show()
 	$FinalScore.show()
-	
-func update_score(score):
-	$Info/Score.text = "Score: %d" % score
-
-func update_lives(lives):
-	$Info/Lives.text = "Lives: %d" % lives
 
 func main_menu():
 	get_tree().change_scene_to_file("res://menu/menu.tscn")
 
 func new_game():
 	get_tree().change_scene_to_file("res://game/game.tscn")	
+
+func _process(_delta: float) -> void:
+		$Info/Lives.text = "Lives: %d" % Global.lives
+		$Info/Score.text = "Score: %d" % Global.score
+		$FinalScore.text = "Score: %d" % Global.score
