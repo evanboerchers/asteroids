@@ -89,5 +89,5 @@ SPACE - Fire Cannon
 "
 horizontal_alignment = 1
 
-[connection signal="pressed" from="CanvasLayer/PlayGameButton" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/PlayGameButton" to="." method="play_game"]
+[connection signal="pressed" from="CanvasLayer/PlayGameButton" to="." method="_on_button_2_pressed"]

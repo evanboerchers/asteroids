@@ -22,7 +22,7 @@ AudioManager="*res://globals/audio_manager.tscn"
 
 [display]
 
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [gui]
 
@@ -58,3 +58,4 @@ shoot={
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
