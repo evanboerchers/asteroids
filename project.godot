@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Global="*res://globals/Global.gd"
 AudioManager="*res://globals/audio_manager.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [gui]
 
 theme/custom_font="uid://p6g0hikpdbpf"
